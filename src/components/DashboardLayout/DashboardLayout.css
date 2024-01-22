@@ -1,0 +1,20 @@
+.dashboard {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 280px 1fr;
+
+    background-color: #21272f;
+}
+.dashboard main {
+    width: 100%;
+
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+.dashboard-content {
+    margin: 0 24px;
+    padding-bottom: 70px;
+
+    height: calc(100% - 70px);
+}

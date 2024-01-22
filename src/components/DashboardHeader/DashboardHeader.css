@@ -1,0 +1,31 @@
+/* Dashboard header *Start* */
+
+.dashboard-header {
+	padding: 37px 0;
+	margin: 0 24px;
+
+	display: flex;
+	justify-content: space-between;
+}
+
+.text-h1 {
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.dashboard-buttons {
+	display: flex;
+	align-items: center;
+}
+
+.dashboard-buttons>*:not(:last-child) {
+	margin-right: 16px;
+}
+
+.circle-btn {}
+
+/* Dashboard header *Stop* */

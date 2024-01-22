@@ -1,33 +1,126 @@
-/* Dashboard header *Start* */
+/* Dashboard sidebar *Start* */
 
-.dashboard-content {}
+.dashboard-sidebar {
+	position: sticky;
+	top: 0;
+	left: 0;
 
-.dashboard-header {
-    padding: 37px 0;
-    margin: 0 24px;
+	max-width: 280px;
+	height: 100vh;
 
-    display: flex;
-    justify-content: space-between;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+
+	border-radius: 0px 24px 24px 0px;
+	background: #29313D;
 }
 
-.text-h1 {
-    color: #D2D4D7;
-    font-family: "IBM Plex Sans";
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
+.dashboard-sidebar__header {
+	border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
-.dashboard-buttons {
-    display: flex;
-    align-items: center;
+.logo {}
+
+.dashboard-sidebar__content {
+	margin: 24px;
 }
 
-.dashboard-buttons>*:not(:last-child) {
-    margin-right: 16px;
+.dashboard-nav {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 6px;
 }
 
-.circle-btn {}
+.dashboard-nav__item {
+	padding: 13px 0px 13px 0px;
 
-/* Dashboard header *Stop* */
+	display: flex;
+	align-items: center;
+
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+.dashboard-nav__item.disabled {
+	border-top: 1px solid rgba(255, 255, 255, 0.03);
+	opacity: 0.5;
+
+	cursor: not-allowed;
+}
+
+.dashboard-nav__icon {
+	margin-right: 14px;
+
+	transition: linear .2s;
+}
+
+.dashboard-nav__title {
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: normal;
+
+	transition: linear .2s;
+}
+
+.dashboard-nav__item.selected .dashboard-nav__icon {
+	fill: #F8D239;
+	stroke: #F8D239;
+}
+.dashboard-nav__item.selected .dashboard-nav__title {
+	background: var(--binance-color, linear-gradient(90deg, #F8D239 0%, #F0B90B 100%));
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.dashboard-sidebar__footer {
+	padding: 16px 24px 24px 24px;
+
+	border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+/* Dashboard sidebar *Stop* */
+
+/* Status *Start* */
+
+.status {}
+
+.status__title {
+	margin-bottom: 6px;
+
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+
+.status__value {
+	padding: 5px 18px;
+
+	width: fit-content;
+
+	border-radius: 8px;
+
+	color: #FFF;
+	text-align: center;
+	font-family: "IBM Plex Sans";
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
+.status__value.green {
+	background: #58D299;
+}
+
+.status__value.red {
+	background: #E34957;
+}
+
+/* Status *Stop* */
