@@ -1,7 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next';
 
 export const Info = () => {
+    const { t } = useTranslation();
 
     const [info, setInfo] = useState([
         {
@@ -51,11 +53,11 @@ export const Info = () => {
                 <div className="server-info-footer">
                     <div>
                         <div className="info-data">
-                            <div className="info-data__title">iP Status</div>
+                            <div className="info-data__title">{t('ip-status')}</div>
                             <div className="info-data__value">DHCP</div>
                         </div>
                         <div className="info-data">
-                            <div className="info-data__title">iP Address</div>
+                            <div className="info-data__title">{t('ip-address')}</div>
                             <div className="info-data__value">192.168.1.1</div>
                         </div>
                     </div>

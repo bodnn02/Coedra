@@ -1,0 +1,34 @@
+{
+    "nav-item-dashboard": "仪表盘",
+    "nav-item-log": "日志",
+    "nav-item-wallet": "钱包标识",
+    "nav-item-settings": "设置",
+    "nav-item-info": "信息",
+    "nav-item-epic": "史诗",
+
+    "status-title": "状态",
+    "status-on": "开启",
+    "status-off": "关闭",
+
+    "page-dashboard": "仪表盘",
+    "page-log": "日志",
+    "page-wallet": "钱包",
+    "page-settings": "设置",
+    "page-info": "信息",
+
+    "graph-label-temperature": "温度",
+    "graph-label-hashing": "哈希",
+    "graph-label-difficulty": "当前难度",
+    "graph-label-completed": "已完成",
+    "graph-label-hashrate-rt": "实时哈希率",
+    "graph-label-timer": "计时器",
+
+    "log": "日志",
+    "algorithm": "算法",
+    "send-your-epic": "发送您的史诗标识",
+    "send-your-rbid": "发送您的RB标识",
+    "send-your-btc": "发送您的BTC地址",
+    
+    "ip-status": "IP状态",
+    "ip-address": "IP地址"
+}

@@ -1,46 +1,49 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next';
 
 export const Wallet = () => {
+    const { t } = useTranslation();
+
     return (
         <div className="dashboard-section">
             <div className="grid-wrapper">
                 <form className="dashboard-form" action="">
                     <div className="dashboard-form__header">
                         <h2 className="dashboard-form__h2">EPIC</h2>
-                        <h3 className="dashboard-form__h3">Algoritm</h3>
+                        <h3 className="dashboard-form__h3">{t('algorithm')}</h3>
                     </div>
                     <div className="dashboard-form__content">
                         <div className="input-wrapper">
-                            <label className="label" for="">Send your Epic ID</label>
+                            <label className="label" for="">{t('send-your-epic')}</label>
                             <input className="input" placeholder="ID" type="text" />
                         </div>
                     </div>
                     <div className="dashboard-form__footer">
                         <div className="status">
-                            <div className="status__title">Status</div>
-                            <div className="status__value green">ON</div>
+                            <div className="status__title">{t('status-title')}</div>
+                            <div className="status__value green">{t('status-on')}</div>
                         </div>
                     </div>
                 </form>
                 <form className="dashboard-form" action="">
                     <div className="dashboard-form__header">
                         <h2 className="dashboard-form__h2">RB</h2>
-                        <h3 className="dashboard-form__h3">Algoritm</h3>
+                        <h3 className="dashboard-form__h3">{t('algorithm')}</h3>
                     </div>
                     <div className="dashboard-form__content">
                         <div className="input-wrapper">
-                            <label className="label" for="">Send your RB ID</label>
+                            <label className="label" for="">{t('send-your-rbid')}</label>
                             <input className="input" placeholder="ID" type="text" />
                         </div>
                         <div className="input-wrapper">
-                            <label className="label" for="">Send your BTC address</label>
+                            <label className="label" for="">{t('send-your-btc')}</label>
                             <input className="input" placeholder="BTC" type="text" />
                         </div>
                     </div>
                     <div className="dashboard-form__footer">
                         <div className="status">
-                            <div className="status__title">Status</div>
-                            <div className="status__value green">ON</div>
+                            <div className="status__title">{t('status-title')}</div>
+                            <div className="status__value green">{t('status-on')}</div>
                         </div>
                     </div>
                 </form>

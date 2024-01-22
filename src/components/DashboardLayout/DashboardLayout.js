@@ -21,6 +21,11 @@ export const DashboardLayout = () => {
                 <div class="dashboard-content">
                     <Outlet />
                 </div>
+                <div class="dashboard-footer">
+                    <div class="copyright">
+                        © 2023
+                    </div>
+                </div>
             </main>
         </div>
     )

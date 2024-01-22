@@ -1,0 +1,53 @@
+.circle-btn {
+	position: relative;
+
+    cursor: pointer;
+}
+.circle-btn > .sub-menu {
+    display: none;
+
+	padding: 10px;
+	border-radius: 12px;
+
+	position: absolute;
+	top: 100%;
+	right: 0;
+
+	background-color: #29313d;
+
+	z-index: 5;
+	animation: fadeOut linear .2s;
+}
+.circle-btn > .sub-menu.opened {
+    display: block;
+}
+.sub-menu > .sub-list {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+.sub-list > .sub-list__item {
+	padding: 5px 6px;
+
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	border-radius: 2px;
+
+	cursor: pointer;
+}
+.sub-list > .sub-list__item.selected {
+	background-color: gray;
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}

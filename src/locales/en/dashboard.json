@@ -1,0 +1,35 @@
+{
+    "nav-item-dashboard": "Dashboard",
+    "nav-item-log": "Log",
+    "nav-item-wallet": "Wallet ID",
+    "nav-item-settings": "Settings",
+    "nav-item-info": "Info",
+    "nav-item-epic": "Epic",
+
+    "status-title": "Status",
+    "status-on": "On",
+    "status-off": "Off",
+
+    "page-dashboard": "Dashboard",
+    "page-log": "Log",
+    "page-wallet": "Wallet",
+    "page-settings": "Settings",
+    "page-info": "Info",
+
+    "graph-label-temperature": "Temperature",
+    "graph-label-hashing": "Hashing",
+    "graph-label-difficulty": "Current Difficulty",
+    "graph-label-completed": "Completed",
+    "graph-label-hashrate-rt": "Hashrate RT",
+    "graph-label-timer": "Timer",
+
+    "log": "Log",
+
+    "algoritm": "Algoritm",
+    "send-your-epic": "Send your Epic ID",
+    "send-your-rbid": "Send your RB ID",
+    "send-your-btc": "Send your BTC address",
+
+    "ip-status": "IP Status",
+    "ip-address": "IP Address"
+}

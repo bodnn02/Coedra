@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const Log = () => {
+  const { t } = useTranslation();
+
   const [logs, setLogs] = useState([
     { name: "ST", content: `test st content` },
     { name: "Error", content: `test error content` },
@@ -23,7 +26,7 @@ export const Log = () => {
               key={log.name}
               onClick={() => handleTabClick(log)}
             >
-              {log.name}
+              {`${t('log')} ${log.name}`}
             </div>
           ))}
         </div>

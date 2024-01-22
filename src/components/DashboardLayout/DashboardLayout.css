@@ -18,3 +18,20 @@
 
     height: calc(100% - 70px);
 }
+
+.dashboard-footer {
+	margin: 0 24px;
+	padding: 26px 0;
+}
+
+.copyright {
+	color: #D2D4D7;
+	text-align: center;
+	font-family: "IBM Plex Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	opacity: 0.15;
+}
