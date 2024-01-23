@@ -124,3 +124,9 @@
 }
 
 /* Status *Stop* */
+
+@media (max-width: 600px) {
+    .dashboard-sidebar {
+        display: none;
+    }
+}

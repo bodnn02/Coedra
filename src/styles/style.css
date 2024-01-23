@@ -471,3 +471,47 @@
 	font-weight: 700;
 	line-height: normal;
 }
+
+@media (max-width: 600px) {
+    .dashboard-stats {
+		grid-template-columns: 1fr;
+	}
+	.graph {
+		grid-template-columns: 1fr;
+	}
+	.graph-aside {
+		padding: 12px;
+
+		max-width: calc(100% - 48px);
+		width: fit-content;
+
+		position: absolute;
+
+		bottom: 12px;
+		left: 12px;
+
+		display: flex;
+		flex-direction: row;
+
+		background-color: #21272F;
+		border-radius: 12px;
+	}
+	.graph-info {
+		padding: 0;
+	}
+	.graph-info:not(:last-child) {
+		margin-right: 37px;
+	}
+	.graph-info__title {
+		font-size: 12px;
+	}
+	.graph-info__value {
+		font-size: 24px;
+	}
+	.graph canvas {
+		margin: 71px 0 127px 0;
+		max-width: 100%;
+		width: 100%!important;
+		height: 256px!important;
+	}
+}
