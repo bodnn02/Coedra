@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export const Log = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    document.title = t("Log");
+}, []);
 
   const [logs, setLogs] = useState([
     { name: "ST", content: `test st content` },

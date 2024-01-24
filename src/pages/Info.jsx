@@ -1,9 +1,13 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next';
 
 export const Info = () => {
     const { t } = useTranslation();
+
+    useEffect(() => {
+        document.title = t("Info");
+    }, []);
 
     const [info, setInfo] = useState([
         {
@@ -31,9 +35,8 @@ export const Info = () => {
     ])
 
     return (
-        <div className="dashboard-wrapper">
-            <div className="dashboard-section">
-                {info.map((infoItem) =>
+        <div className="dashboard-section info-page">
+            {info.map((infoItem) =>
                     <div className="info-section" key={infoItem.id}>
                         <div className="info-section__header">
                             <h2 className="info-section__h2">{infoItem.name}</h2>
@@ -65,7 +68,9 @@ export const Info = () => {
                         <img src="images/by_sync.svg" alt="" />
                     </div>
                 </div>
-            </div>
+                <div className="m-partner">
+                    <img src="images/by_sync.svg" alt="" />
+                </div>
         </div>
     )
 }

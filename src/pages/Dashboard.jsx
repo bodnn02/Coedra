@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
 import Timer from "../components/Timer/Timer";
@@ -19,9 +19,13 @@ import {
 export const Dashboard = () => {
   const { t } = useTranslation();
 
+  useEffect(() => {
+    document.title = t("Dashboard");
+  }, []);
+
   var [minerData, setMinerData] = useState({
     currentProgress: 90,
-    dateEnds: "2024-01-22T23:00:00",
+    dateEnds: "2024-01-25T23:00:00",
     graphData: [
       {
         temperature: 30,
@@ -76,7 +80,7 @@ export const Dashboard = () => {
     ],
   });
 
-  const endDate = new Date("2024-01-22T23:00:00");
+  const endDate = new Date("2024-01-24T23:00:00");
 
   const calculateAverage = (data, key) => {
     const sum = data.reduce((acc, val) => acc + val[key], 0);
@@ -169,15 +173,15 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
-      <section className="dashboard-section">
-        <div className="dashboard-stats">
+      <div className="dashboard-stats">
+        <div className="grid-wrapper">
           <div className="dashboard-stats__item">
             <div className="dashboard-stats__icon">
               <img src="images/temperature-02.svg" alt="" />
             </div>
             <div className="dashboard-stats__wrapper">
               <div className="dashboard-stats__title">
-                {t("nav-item-settings")}
+                {t("stats-temperature")}
               </div>
               <div className="dashboard-stats__value">58 ˙C</div>
             </div>
@@ -188,44 +192,42 @@ export const Dashboard = () => {
             </div>
             <div className="dashboard-stats__wrapper">
               <div className="dashboard-stats__title">
-                {t("nav-item-settings")}
+              {t("stats-chip")}
               </div>
               <div className="dashboard-stats__value">18</div>
             </div>
           </div>
-          <div className="dashboard-stats__item">
-            <div className="dashboard-stats__icon">
-              <img src="images/electricity.svg" alt="" />
-            </div>
-            <div className="dashboard-stats__wrapper">
-              <div className="dashboard-stats__title">
-                {t("nav-item-settings")}
-              </div>
-              <div className="dashboard-stats__value">
-                <span className="green-text">P</span>{" "}
-                <span className="green-text">N</span> B 10
-              </div>
-            </div>
+        </div>
+        <div className="dashboard-stats__item">
+          <div className="dashboard-stats__icon">
+            <img src="images/electricity.svg" alt="" />
           </div>
-          <div className="dashboard-stats__item">
-            <div className="dashboard-stats__icon">
-              <img src="images/slack.svg" alt="" />
+          <div className="dashboard-stats__wrapper">
+            <div className="dashboard-stats__title">
+            {t("stats-error")}
             </div>
-            <div className="dashboard-stats__wrapper">
-              <div className="dashboard-stats__title">
-                {t("nav-item-settings")}
-              </div>
-              <div className="dashboard-stats__value">L 2000 R 2000</div>
+            <div className="dashboard-stats__value">
+              <span className="green-text">P</span>{" "}
+              <span className="green-text">N</span> B 10
             </div>
           </div>
         </div>
-      </section>
+        <div className="dashboard-stats__item">
+          <div className="dashboard-stats__icon">
+            <img src="images/slack.svg" alt="" />
+          </div>
+          <div className="dashboard-stats__wrapper">
+            <div className="dashboard-stats__title">
+            {t("stats-fan")}
+            </div>
+            <div className="dashboard-stats__value">L 2000 R 2000</div>
+          </div>
+        </div>
+      </div>
       <div className="graph">
         <div className="graph-labels">
           <div className="graph-label">
-            <div className="graph-label__value">
-            Current Difficulty
-            </div>
+            <div className="graph-label__value">Current Difficulty</div>
           </div>
         </div>
         <AreaChart

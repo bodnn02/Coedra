@@ -9,10 +9,6 @@ import { DashboardHeader } from '../DashboardHeader/DashboardHeader';
 
 export const DashboardLayout = () => {
 
-    useEffect(() => {
-        document.title = "Home Page";
-    }, []);
-
     return (
         <div className='dashboard'>
             <DashboardSidebar />

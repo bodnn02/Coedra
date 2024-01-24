@@ -10,6 +10,11 @@
     "status-on": "On",
     "status-off": "Off",
 
+    "stats-temperature": "Temperature",
+    "stats-chip": "Chip",
+    "stats-error": "Error",
+    "stats-fan": "Fan",
+
     "page-dashboard": "Dashboard",
     "page-log": "Log",
     "page-wallet": "Wallet",
@@ -33,5 +38,12 @@
     "ip-status": "IP Status",
     "ip-address": "IP Address",
 
-    "page-not-found": "Page not found"
+    "page-not-found": "Page not found",
+
+    "Dashboard": "Dashboard",
+    "Log": "Log",
+    "Wallet": "Wallet",
+    "Settings": "Settings",
+    "Info": "Info",
+    "Epic": "Epic"
 }

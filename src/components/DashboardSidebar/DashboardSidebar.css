@@ -1,5 +1,4 @@
 /* Dashboard sidebar *Start* */
-
 .dashboard-sidebar {
 	position: sticky;
 	top: 0;
@@ -66,9 +65,9 @@
 	transition: linear .2s;
 }
 
-.dashboard-nav__item.selected .dashboard-nav__icon {
-	fill: #F8D239;
+.dashboard-nav__item.selected svg, .dashboard-nav__item.selected path {
 	stroke: #F8D239;
+	color: #F8D239;
 }
 
 .dashboard-nav__item.selected .dashboard-nav__title {

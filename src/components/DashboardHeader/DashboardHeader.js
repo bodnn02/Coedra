@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { styles } from "./DashboardHeader.css";
 import { CircleButton } from "../CircleButton/CircleButton";
 import { useTranslation } from "react-i18next";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 export const DashboardHeader = () => {
   const { t, i18n } = useTranslation();
   const [currentLanguage, setCurrentLanguage] = useState("EN");
+  const [pageTitle, setPageTitle] = useState("");
+
+  const location = useLocation();
+
+  useEffect(() => {
+    // Обновление заголовка страницы при изменении маршрута
+    setPageTitle(document.title);
+  }, [location]);
 
   const languages = [
     {
@@ -28,7 +36,7 @@ export const DashboardHeader = () => {
         <Link className="logo" to="/">
           <img src="images/logo.svg" alt="" />
         </Link>
-        <h1 className="text-h1">{document.title}</h1>
+        <h1 className="text-h1">{t(pageTitle)}</h1>
         <div className="dashboard-buttons">
           <CircleButton
             icon={"images/language-square.svg"}
@@ -45,7 +53,7 @@ export const DashboardHeader = () => {
         </div>
       </header>
       <div className="m-header">
-        <h1 className="text-h1">{document.title}</h1>
+        <h1 className="text-h1">{t(pageTitle)}</h1>
         <div className="status">
             <div className="status__title">{t('status-title')}</div>
             <div className="status__value green-text">{t('status-on')}</div>
