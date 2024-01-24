@@ -4,10 +4,6 @@ import { useTranslation } from 'react-i18next';
 export const Log = () => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.title = t("Log");
-}, []);
-
   const [logs, setLogs] = useState([
     { name: "ST", content: `test st content` },
     { name: "Error", content: `test error content` },

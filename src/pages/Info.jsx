@@ -5,10 +5,6 @@ import { useTranslation } from 'react-i18next';
 export const Info = () => {
     const { t } = useTranslation();
 
-    useEffect(() => {
-        document.title = t("Info");
-    }, []);
-
     const [info, setInfo] = useState([
         {
             name: "Hardware",

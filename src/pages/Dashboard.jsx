@@ -19,10 +19,6 @@ import {
 export const Dashboard = () => {
   const { t } = useTranslation();
 
-  useEffect(() => {
-    document.title = t("Dashboard");
-  }, []);
-
   var [minerData, setMinerData] = useState({
     currentProgress: 90,
     dateEnds: "2024-01-25T23:00:00",
@@ -114,40 +110,40 @@ export const Dashboard = () => {
             </div>
           </div>
         </div>
-        <AreaChart
-          width={1000}
-          height={250}
-          data={minerData.graphData}
-          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorTemperature" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#E34957" stopOpacity={0.15} />
-              <stop offset="95%" stopColor="#E34957" stopOpacity={0} />
-            </linearGradient>
-            <linearGradient id="colorHashrate" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.15} />
-              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Tooltip content={<CustomTooltip1 />} />
-          <Area
-            type="monotone"
-            dataKey="temperature"
-            stroke="#E34957"
-            fillOpacity={1}
-            strokeWidth={2}
-            fill="url(#colorTemperature)"
-          />
-          <Area
-            type="monotone"
-            dataKey="hashrate"
-            stroke="#58D299"
-            fillOpacity={1}
-            strokeWidth={2}
-            fill="url(#colorHashrate)"
-          />
-        </AreaChart>
+        <ResponsiveContainer width="100%" height={250}>
+            <AreaChart
+            data={minerData.graphData}
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            >
+            <defs>
+                <linearGradient id="colorTemperature" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#E34957" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="#E34957" stopOpacity={0} />
+                </linearGradient>
+                <linearGradient id="colorHashrate" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                </linearGradient>
+            </defs>
+            <Tooltip content={<CustomTooltip1 />} />
+            <Area
+                type="monotone"
+                dataKey="temperature"
+                stroke="#E34957"
+                fillOpacity={1}
+                strokeWidth={2}
+                fill="url(#colorTemperature)"
+            />
+            <Area
+                type="monotone"
+                dataKey="hashrate"
+                stroke="#58D299"
+                fillOpacity={1}
+                strokeWidth={2}
+                fill="url(#colorHashrate)"
+            />
+            </AreaChart>
+        </ResponsiveContainer>
         <div className="graph-aside">
           <div className="graph-info">
             <div className="graph-info__title">
@@ -230,28 +226,28 @@ export const Dashboard = () => {
             <div className="graph-label__value">Current Difficulty</div>
           </div>
         </div>
-        <AreaChart
-          width={1000}
-          height={250}
-          data={minerData.graphData}
-          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
-        >
-          <defs>
-            <linearGradient id="colorDifficulty" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#A038AA" stopOpacity={0.15} />
-              <stop offset="95%" stopColor="#A038AA" stopOpacity={0} />
-            </linearGradient>
-          </defs>
-          <Tooltip content={<CustomTooltip2 />} />
-          <Area
-            type="monotone"
-            dataKey="difficulty"
-            stroke="#A038AA"
-            fillOpacity={1}
-            strokeWidth={2}
-            fill="url(#colorDifficulty)"
-          />
-        </AreaChart>
+        <ResponsiveContainer width="100%" height={250}>
+            <AreaChart
+            data={minerData.graphData}
+            margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+            >
+            <defs>
+                <linearGradient id="colorDifficulty" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#A038AA" stopOpacity={0.15} />
+                <stop offset="95%" stopColor="#A038AA" stopOpacity={0} />
+                </linearGradient>
+            </defs>
+            <Tooltip content={<CustomTooltip2 />} />
+            <Area
+                type="monotone"
+                dataKey="difficulty"
+                stroke="#A038AA"
+                fillOpacity={1}
+                strokeWidth={2}
+                fill="url(#colorDifficulty)"
+            />
+            </AreaChart>
+        </ResponsiveContainer>
         <div className="graph-aside">
           <div className="graph-info">
             <div className="graph-info__title">

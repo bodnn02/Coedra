@@ -5,10 +5,6 @@ import { useTranslation } from 'react-i18next';
 export const Wallet = () => {
     const { t } = useTranslation();
 
-    useEffect(() => {
-        document.title = t("Wallet");
-    }, []);
-
     return (
         <div className="dashboard-section wallet-page">
             <div className="grid-wrapper">
@@ -19,7 +15,7 @@ export const Wallet = () => {
                     </div>
                     <div className="dashboard-form__content">
                         <div className="input-wrapper">
-                            <label className="label" for="">{t('send-your-epic')}</label>
+                            <label className="label" >{t('send-your-epic')}</label>
                             <input className="input" placeholder="ID" type="text" />
                         </div>
                     </div>
@@ -37,11 +33,11 @@ export const Wallet = () => {
                     </div>
                     <div className="dashboard-form__content">
                         <div className="input-wrapper">
-                            <label className="label" for="">{t('send-your-rbid')}</label>
+                            <label className="label" >{t('send-your-rbid')}</label>
                             <input className="input" placeholder="ID" type="text" />
                         </div>
                         <div className="input-wrapper">
-                            <label className="label" for="">{t('send-your-btc')}</label>
+                            <label className="label" >{t('send-your-btc')}</label>
                             <input className="input" placeholder="BTC" type="text" />
                         </div>
                     </div>

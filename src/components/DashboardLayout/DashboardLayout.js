@@ -14,11 +14,11 @@ export const DashboardLayout = () => {
             <DashboardSidebar />
             <main>
                 <DashboardHeader />
-                <div class="dashboard-content">
+                <div className="dashboard-content">
                     <Outlet />
                 </div>
-                <div class="dashboard-footer">
-                    <div class="copyright">
+                <div className="dashboard-footer">
+                    <div className="copyright">
                         © 2023
                     </div>
                 </div>

@@ -35,8 +35,7 @@
 
 	opacity: 0.15;
 }
-
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
     .dashboard {
         grid-template-columns: 1fr;
     }

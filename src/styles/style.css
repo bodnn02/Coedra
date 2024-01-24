@@ -370,6 +370,7 @@
 .dashboard-stats__value {
 	color: #D2D4D7;
 	font-family: "IBM Plex Sans";
+	text-align: center;
 	font-size: 52px;
 	font-style: normal;
 	font-weight: 600;
@@ -405,7 +406,7 @@
 	background: #29313D;
 }
 
-.graph .recharts-wrapper {
+.graph .recharts-responsive-container {
 	margin-top: 72px;
 
 	max-width: 100%;
@@ -535,6 +536,65 @@
 
 	color: #fff;
 }
+
+/* Circle button *Start* */
+
+.circle-btn {
+	position: relative;
+
+    cursor: pointer;
+}
+.circle-btn > .sub-menu {
+    display: none;
+
+	padding: 10px;
+	border-radius: 12px;
+
+	position: absolute;
+	top: 100%;
+	right: 0;
+
+	background-color: #29313d;
+
+	z-index: 5;
+	animation: fadeOut linear .2s;
+}
+.circle-btn > .sub-menu.opened {
+    display: block;
+}
+.sub-menu > .sub-list {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+.sub-list > .sub-list__item {
+	padding: 5px 6px;
+
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+
+	border-radius: 2px;
+
+	cursor: pointer;
+}
+.sub-list > .sub-list__item.selected {
+	background-color: gray;
+}
+
+@keyframes fadeOut {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+/* Circle button *Stop* */
+
 @media (max-width: 1200px) {
 .dashboard-stats {
 	grid-template-columns: 1fr;
@@ -583,7 +643,7 @@
 		max-width: 105px;
 		font-size: 24px;
 	}
-	.graph .recharts-wrapper {
+	.graph .recharts-responsive-container {
 		margin: 71px 0 127px 0;
 		max-width: 100%;
 		width: 100%!important;
