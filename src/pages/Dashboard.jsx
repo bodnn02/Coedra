@@ -277,7 +277,7 @@ const CustomTooltip1 = ({ active, payload, label }) => {
           <div className="graph-tooltip__name">˙C</div>
         </div>
         <div className="graph-tooltip">
-          <div className="graph-tooltip__value">{payload[0].value}</div>
+          <div className="graph-tooltip__value">{payload[1].value}</div>
           <div className="graph-tooltip__name">mgh</div>
         </div>
       </>
