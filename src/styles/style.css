@@ -393,9 +393,12 @@
 	background: #29313D;
 }
 
-.graph canvas {
+.graph .recharts-wrapper {
+	margin-top: 72px;
+
 	max-width: 100%;
 	max-height: 400px;
+	width: 100%!important;
 }
 
 .graph-info {
@@ -472,6 +475,29 @@
 	line-height: normal;
 }
 
+.graph-tooltip {
+	display: flex;
+	align-items: center;
+}
+.graph-tooltip__name {
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: normal;
+}
+.graph-tooltip__value {
+	margin-right: 6px;
+
+	color: #D2D4D7;
+	font-family: "IBM Plex Sans";
+	font-size: 32px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: normal;
+}
+
 .green-text {
 	padding: 5px 18px;
 
@@ -529,7 +555,7 @@
 	.graph-info__value {
 		font-size: 24px;
 	}
-	.graph canvas {
+	.graph .recharts-wrapper {
 		margin: 71px 0 127px 0;
 		max-width: 100%;
 		width: 100%!important;
@@ -558,5 +584,11 @@
 	}
 	.grid-wrapper {
 		grid-template-columns: 1fr;
+	}
+	.graph-tooltip__value {
+		font-size: 12px;
+	}
+	.graph-tooltip__name {
+		font-size: 13px;
 	}
 }

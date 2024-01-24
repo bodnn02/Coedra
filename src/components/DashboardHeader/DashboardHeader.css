@@ -54,5 +54,32 @@
 		height: 163.333px;
 	}
 }
+.m-header {
+	display: none;
+}
+@media (max-width: 600px) {
+	.m-header {
+		margin: 0 12px 24px 12px;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.text-h1 {
+		font-size: 18px;
+	}
+	.status {
+		display: flex;
+		align-items: center;
+	}
+	.status__title {
+		margin-bottom: 0;
+		margin-right: 7px;
+		font-size: 12px;
+	}
+	.status .green-text {
+		padding: 4px 12px;
 
+		font-size: 12px;
+	}
+}
 /* Dashboard header *Stop* */

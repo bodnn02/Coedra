@@ -31,5 +31,7 @@
     "send-your-btc": "Send your BTC address",
 
     "ip-status": "IP Status",
-    "ip-address": "IP Address"
+    "ip-address": "IP Address",
+
+    "page-not-found": "Page not found"
 }

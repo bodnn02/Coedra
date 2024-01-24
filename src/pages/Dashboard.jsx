@@ -1,218 +1,297 @@
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next';
+import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 
-import { Line } from 'react-chartjs-2';
-import Timer from '../components/Timer/Timer';
+import Timer from "../components/Timer/Timer";
+
 import {
-    Chart as ChartJS,
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Filler
-} from 'chart.js'
-
-ChartJS.register(
-    LineElement,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    Filler
-)
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+} from "recharts";
 
 export const Dashboard = () => {
-    const { t } = useTranslation();
+  const { t } = useTranslation();
 
-    var [minerData, setMinerData] = useState({
-        currentProgress: 90,
-        dateEnds: '2024-01-22T23:00:00',
-        hashingData: [
-            1, 2, 3, 4, 5, 6, 7, 8, 9, 10
-        ],
-        temperatureData: [
-            30, 35, 40, 45, 50, 55, 58, 59, 60, 55
-        ],
-        difficultyData: [
-            2, 2.12, 3, 3, 2.5, 2.4, 2.2, 3
-        ]
-    })
+  var [minerData, setMinerData] = useState({
+    currentProgress: 90,
+    dateEnds: "2024-01-22T23:00:00",
+    graphData: [
+      {
+        temperature: 30,
+        hashrate: 10,
+        difficulty: 2.4565,
+      },
+      {
+        temperature: 35,
+        hashrate: 12,
+        difficulty: 2.2,
+      },
+      {
+        temperature: 32,
+        hashrate: 11,
+        difficulty: 1.5,
+      },
+      {
+        temperature: 28,
+        hashrate: 9,
+        difficulty: 1,
+      },
+      {
+        temperature: 33,
+        hashrate: 10.5,
+        difficulty: 1.1,
+      },
+      {
+        temperature: 31,
+        hashrate: 11.5,
+        difficulty: 1.3,
+      },
+      {
+        temperature: 34,
+        hashrate: 12.5,
+        difficulty: 1.5,
+      },
+      {
+        temperature: 29,
+        hashrate: 9.5,
+        difficulty: 1.8,
+      },
+      {
+        temperature: 36,
+        hashrate: 13,
+        difficulty: 2,
+      },
+      {
+        temperature: 30.5,
+        hashrate: 10.8,
+        difficulty: 2.4565,
+      },
+    ],
+  });
 
-    // var progressGraph = {
-    //     labels: ['', '', '', '', '', '', ''],
-    //     datasets: [{
-    //         data: minerData.hashingData,
-    //         backgroundColor: '#E34957',
-    //         borderColor: '#bb4451',
-    //         pointBorderColor: 'transparent',
-    //         pointBorderWidth: 4,
-    //         tension: 0.5,
-    //         fill: true
-    //     },
-    //     {
-    //         data: minerData.temperatureData,
-    //         backgroundColor: 'transparent',
-    //         borderColor: '#5ad097',
-    //         pointBorderColor: 'transparent',
-    //         pointBorderWidth: 4,
-    //         tension: 0.5,
-    //         fill: true
-    //     }
-    //     ]
-    // }
+  const endDate = new Date("2024-01-22T23:00:00");
 
+  const calculateAverage = (data, key) => {
+    const sum = data.reduce((acc, val) => acc + val[key], 0);
+    return sum / data.length;
+  };
 
-    var progressGraph = (canvas) => {
-        const ctx = canvas.getContext("2d");
-        const gradient = ctx.createLinearGradient(0, 0, 0, 20);
-        gradient.addColorStop(0, 'rgba(250,174,50,1)');   
-        gradient.addColorStop(1, 'rgba(250,174,50,0)');
+  return (
+    <>
+      <div className="graph">
+        <div className="graph-labels">
+          <div className="graph-label">
+            <div
+              className="graph-label__line"
+              Style={"background-color: #E34957;"}
+            ></div>
+            <div className="graph-label__title">
+              {t("graph-label-temperature")}
+            </div>
+            <div className="graph-label__value">
+              {calculateAverage(minerData.graphData, "temperature")} ˙C
+            </div>
+          </div>
+          <div className="graph-label">
+            <div
+              className="graph-label__line"
+              Style={"background-color: #58D299;"}
+            ></div>
+            <div className="graph-label__title">{t("graph-label-hashing")}</div>
+            <div className="graph-label__value">
+              {calculateAverage(minerData.graphData, "hashrate")} MH
+            </div>
+          </div>
+        </div>
+        <AreaChart
+          width={1000}
+          height={250}
+          data={minerData.graphData}
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorTemperature" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#E34957" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="#E34957" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="colorHashrate" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <Tooltip content={<CustomTooltip1 />} />
+          <Area
+            type="monotone"
+            dataKey="temperature"
+            stroke="#E34957"
+            fillOpacity={1}
+            strokeWidth={2}
+            fill="url(#colorTemperature)"
+          />
+          <Area
+            type="monotone"
+            dataKey="hashrate"
+            stroke="#58D299"
+            fillOpacity={1}
+            strokeWidth={2}
+            fill="url(#colorHashrate)"
+          />
+        </AreaChart>
+        <div className="graph-aside">
+          <div className="graph-info">
+            <div className="graph-info__title">
+              {t("graph-label-completed")}
+            </div>
+            <div className="graph-info__value">
+              {minerData.currentProgress} %
+            </div>
+          </div>
+          <div className="graph-info">
+            <div className="graph-info__title">
+              {t("graph-label-hashrate-rt")}
+            </div>
+            <div className="graph-info__value">
+              {minerData.graphData[minerData.graphData.length - 1].hashrate} mgh
+            </div>
+          </div>
+          <div className="graph-info">
+            <div className="graph-info__title">{t("graph-label-timer")}</div>
+            <div className="graph-info__value">
+              <Timer endDate={endDate} />
+            </div>
+          </div>
+        </div>
+      </div>
+      <section className="dashboard-section">
+        <div className="dashboard-stats">
+          <div className="dashboard-stats__item">
+            <div className="dashboard-stats__icon">
+              <img src="images/temperature-02.svg" alt="" />
+            </div>
+            <div className="dashboard-stats__wrapper">
+              <div className="dashboard-stats__title">
+                {t("nav-item-settings")}
+              </div>
+              <div className="dashboard-stats__value">58 ˙C</div>
+            </div>
+          </div>
+          <div className="dashboard-stats__item">
+            <div className="dashboard-stats__icon">
+              <img src="images/cpu-charge.svg" alt="" />
+            </div>
+            <div className="dashboard-stats__wrapper">
+              <div className="dashboard-stats__title">
+                {t("nav-item-settings")}
+              </div>
+              <div className="dashboard-stats__value">18</div>
+            </div>
+          </div>
+          <div className="dashboard-stats__item">
+            <div className="dashboard-stats__icon">
+              <img src="images/electricity.svg" alt="" />
+            </div>
+            <div className="dashboard-stats__wrapper">
+              <div className="dashboard-stats__title">
+                {t("nav-item-settings")}
+              </div>
+              <div className="dashboard-stats__value">
+                <span className="green-text">P</span>{" "}
+                <span className="green-text">N</span> B 10
+              </div>
+            </div>
+          </div>
+          <div className="dashboard-stats__item">
+            <div className="dashboard-stats__icon">
+              <img src="images/slack.svg" alt="" />
+            </div>
+            <div className="dashboard-stats__wrapper">
+              <div className="dashboard-stats__title">
+                {t("nav-item-settings")}
+              </div>
+              <div className="dashboard-stats__value">L 2000 R 2000</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div className="graph">
+        <div className="graph-labels">
+          <div className="graph-label">
+            <div className="graph-label__value">
+            Current Difficulty
+            </div>
+          </div>
+        </div>
+        <AreaChart
+          width={1000}
+          height={250}
+          data={minerData.graphData}
+          margin={{ top: 0, right: 0, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="colorDifficulty" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="5%" stopColor="#A038AA" stopOpacity={0.15} />
+              <stop offset="95%" stopColor="#A038AA" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <Tooltip content={<CustomTooltip2 />} />
+          <Area
+            type="monotone"
+            dataKey="difficulty"
+            stroke="#A038AA"
+            fillOpacity={1}
+            strokeWidth={2}
+            fill="url(#colorDifficulty)"
+          />
+        </AreaChart>
+        <div className="graph-aside">
+          <div className="graph-info">
+            <div className="graph-info__title">
+              {t("graph-label-difficulty")}
+            </div>
+            <div className="graph-info__value">
+              {minerData.graphData[minerData.graphData.length - 1].difficulty}{" "}
+              ph
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-        return {
-            labels: ["02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00","00:00"],
-            datasets: [
-                {
-                    backgroundColor : gradient, // Put the gradient here as a fill color
-                    borderColor : "#ff6c23",
-                    borderWidth: 2,
-                    pointColor : "#fff",
-                    pointStrokeColor : "#ff6c23",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "#ff6c23",
-                    data : [25.0,32.4,22.2,39.4,34.2,22.0,23.2,-24.1,20.0,-18.4,19.1,17.4]
-                }
-            ]
-        }
-    }
-
-    var difficultyGraph = {
-        labels: ['', '', '', '', '', '', ''],
-        datasets: [{
-            data: minerData.difficultyData,
-            backgroundColor: 'transparent',
-            borderColor: '#A038AA',
-            pointBorderColor: 'transparent',
-            pointBorderWidth: 4,
-            tension: 0.5,
-            fill: true
-        }
-        ]
-    }
-
-    const options = {
-        plugins: {
-            legend: false
-        },
-        scales: {
-            x: {
-                grid: {
-                    display: false
-                },
-                ticks: {
-                    display: false
-                }
-            },
-            y: {
-                ticks: {
-                    display: false
-                },
-                grid: {
-                    borderDash: [10],
-                    display: false
-                }
-            }
-        }
-    }
-
-    const endDate = new Date('2024-01-22T23:00:00');
-
+const CustomTooltip1 = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
     return (
-        <>
-            <div className='graph'>
-                <div className="graph-labels">
-                    <div className="graph-label">
-                        <div className="graph-label__line" Style={"background-color: #E34957;"}></div>
-                        <div className="graph-label__title">{t('graph-label-temperature')}</div>
-                        <div className="graph-label__value">{minerData.temperatureData.reduce((acc, val) => acc + val, 0) / minerData.temperatureData.length} ˙C</div>
-                    </div>
-                    <div className="graph-label">
-                        <div className="graph-label__line" Style={"background-color: #58D299;"}></div>
-                        <div className="graph-label__title">{t('graph-label-hashing')}</div>
-                        <div className="graph-label__value">{minerData.hashingData.reduce((acc, val) => acc + val, 0) / minerData.hashingData.length} MH</div>
-                    </div>
-                </div>
-                <Line data={progressGraph} options={options}></Line>
-                <div className='graph-aside'>
-                    <div className="graph-info">
-                        <div className="graph-info__title">{t('graph-label-completed')}</div>
-                        <div className="graph-info__value">{minerData.currentProgress} %</div>
-                    </div>
-                    <div className="graph-info">
-                        <div className="graph-info__title">{t('graph-label-hashrate-rt')}</div>
-                        <div className="graph-info__value">{minerData.hashingData[minerData.hashingData.length - 1]} mgh</div>
-                    </div>
-                    <div className="graph-info">
-                        <div className="graph-info__title">{t('graph-label-timer')}</div>
-                        <div className="graph-info__value"><Timer endDate={endDate} /></div>
-                    </div>
-                </div>
-            </div>
-            <section className="dashboard-section">
-                <div className="dashboard-stats">
-                    <div className="dashboard-stats__item">
-                        <div className="dashboard-stats__icon">
-                            <img src="images/temperature-02.svg" alt="" />
-                        </div>
-                        <div className="dashboard-stats__wrapper">
-                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                            <div className="dashboard-stats__value">
-                                58 ˙C
-                            </div>
-                        </div>
-                    </div>
-                    <div className="dashboard-stats__item">
-                        <div className="dashboard-stats__icon">
-                            <img src="images/cpu-charge.svg" alt="" />
-                        </div>
-                        <div className="dashboard-stats__wrapper">
-                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                            <div className="dashboard-stats__value">
-                                18
-                            </div>
-                        </div>
-                    </div>
-                    <div className="dashboard-stats__item">
-                        <div className="dashboard-stats__icon">
-                            <img src="images/electricity.svg" alt="" />
-                        </div>
-                        <div className="dashboard-stats__wrapper">
-                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                            <div className="dashboard-stats__value">
-                                <span className='green-text'>P</span> <span className='green-text'>N</span> B 10
-                            </div>
-                        </div>
-                    </div>
-                    <div className="dashboard-stats__item">
-                        <div className="dashboard-stats__icon">
-                            <img src="images/slack.svg" alt="" />
-                        </div>
-                        <div className="dashboard-stats__wrapper">
-                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                            <div className="dashboard-stats__value">
-                                L 2000 R 2000
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <div className='graph'>
-                <Line data={difficultyGraph} options={options}></Line>
-                <div className='graph-aside'>
-                    <div className="graph-info">
-                        <div className="graph-info__title">{t('graph-label-difficulty')}</div>
-                        <div className="graph-info__value">{minerData.difficultyData[minerData.difficultyData.length - 1]} ph</div>
-                    </div>
-                </div>
-            </div>
-        </>
-    )
-}
+      <>
+        <div className="graph-tooltip">
+          <div className="graph-tooltip__value">{payload[0].value}</div>
+          <div className="graph-tooltip__name">˙C</div>
+        </div>
+        <div className="graph-tooltip">
+          <div className="graph-tooltip__value">{payload[0].value}</div>
+          <div className="graph-tooltip__name">mgh</div>
+        </div>
+      </>
+    );
+  }
+};
+
+const CustomTooltip2 = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <>
+        <div className="graph-tooltip">
+          <div className="graph-tooltip__value">{payload[0].value}</div>
+          <div className="graph-tooltip__name">ph</div>
+        </div>
+      </>
+    );
+  }
+};

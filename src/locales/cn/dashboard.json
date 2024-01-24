@@ -30,5 +30,7 @@
     "send-your-btc": "发送您的BTC地址",
     
     "ip-status": "IP状态",
-    "ip-address": "IP地址"
+    "ip-address": "IP地址",
+
+    "page-not-found": "Page not found"
 }

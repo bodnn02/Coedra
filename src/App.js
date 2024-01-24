@@ -22,8 +22,9 @@ function App() {
         <Route title='Info' path='/info' element={<Info/>} />
         <Route title='Wallet' path='/wallet' element={<Wallet/>} />
         <Route title='Log'path='/log' element={<Log/>} />
-        <Route path='*' element={<Notfoundpage/>} />
+        
       </Route>
+      <Route path='*' element={<Notfoundpage/>} />
     </Routes>
   );
 }
