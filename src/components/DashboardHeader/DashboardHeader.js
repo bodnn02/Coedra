@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { styles } from './DashboardHeader.css';
 import { CircleButton } from '../CircleButton/CircleButton';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export const DashboardHeader = () => {
     const { t, i18n } = useTranslation();
@@ -24,6 +25,9 @@ export const DashboardHeader = () => {
 
     return (
         <header className="dashboard-header">
+            <Link className="logo" to="/">
+                <img src="images/logo.svg" alt="" />
+            </Link>
             <h1 className="text-h1">{document.title}</h1>
             <div className="dashboard-buttons">
                 <CircleButton icon={"images/language-square.svg"} subList={languages} selected_option={currentLanguage} setSelectedOption={handleChangeLanguage}/>

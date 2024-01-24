@@ -8,14 +8,16 @@ import {
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
+    Filler
 } from 'chart.js'
 
 ChartJS.register(
     LineElement,
     CategoryScale,
     LinearScale,
-    PointElement
+    PointElement,
+    Filler
 )
 
 export const Dashboard = () => {
@@ -35,27 +37,51 @@ export const Dashboard = () => {
         ]
     })
 
-    var progressGraph = {
-        labels: ['', '', '', '', '', '', ''],
-        datasets: [{
-            data: minerData.hashingData,
-            backgroundColor: 'transparent',
-            borderColor: '#bb4451',
-            pointBorderColor: 'transparent',
-            pointBorderWidth: 4,
-            tension: 0.5,
-            fill: true
-        },
-        {
-            data: minerData.temperatureData,
-            backgroundColor: 'transparent',
-            borderColor: '#5ad097',
-            pointBorderColor: 'transparent',
-            pointBorderWidth: 4,
-            tension: 0.5,
-            fill: true
+    // var progressGraph = {
+    //     labels: ['', '', '', '', '', '', ''],
+    //     datasets: [{
+    //         data: minerData.hashingData,
+    //         backgroundColor: '#E34957',
+    //         borderColor: '#bb4451',
+    //         pointBorderColor: 'transparent',
+    //         pointBorderWidth: 4,
+    //         tension: 0.5,
+    //         fill: true
+    //     },
+    //     {
+    //         data: minerData.temperatureData,
+    //         backgroundColor: 'transparent',
+    //         borderColor: '#5ad097',
+    //         pointBorderColor: 'transparent',
+    //         pointBorderWidth: 4,
+    //         tension: 0.5,
+    //         fill: true
+    //     }
+    //     ]
+    // }
+
+
+    var progressGraph = (canvas) => {
+        const ctx = canvas.getContext("2d");
+        const gradient = ctx.createLinearGradient(0, 0, 0, 20);
+        gradient.addColorStop(0, 'rgba(250,174,50,1)');   
+        gradient.addColorStop(1, 'rgba(250,174,50,0)');
+
+        return {
+            labels: ["02:00","04:00","06:00","08:00","10:00","12:00","14:00","16:00","18:00","20:00","22:00","00:00"],
+            datasets: [
+                {
+                    backgroundColor : gradient, // Put the gradient here as a fill color
+                    borderColor : "#ff6c23",
+                    borderWidth: 2,
+                    pointColor : "#fff",
+                    pointStrokeColor : "#ff6c23",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "#ff6c23",
+                    data : [25.0,32.4,22.2,39.4,34.2,22.0,23.2,-24.1,20.0,-18.4,19.1,17.4]
+                }
+            ]
         }
-    ]
     }
 
     var difficultyGraph = {
@@ -69,7 +95,7 @@ export const Dashboard = () => {
             tension: 0.5,
             fill: true
         }
-    ]
+        ]
     }
 
     const options = {
@@ -126,7 +152,7 @@ export const Dashboard = () => {
                     </div>
                     <div className="graph-info">
                         <div className="graph-info__title">{t('graph-label-timer')}</div>
-                        <div className="graph-info__value"><Timer endDate={endDate}/></div>
+                        <div className="graph-info__value"><Timer endDate={endDate} /></div>
                     </div>
                 </div>
             </div>
@@ -136,36 +162,44 @@ export const Dashboard = () => {
                         <div className="dashboard-stats__icon">
                             <img src="images/temperature-02.svg" alt="" />
                         </div>
-                        <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                        <div className="dashboard-stats__value">
-                            58 ˙C
+                        <div className="dashboard-stats__wrapper">
+                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
+                            <div className="dashboard-stats__value">
+                                58 ˙C
+                            </div>
                         </div>
                     </div>
                     <div className="dashboard-stats__item">
                         <div className="dashboard-stats__icon">
                             <img src="images/cpu-charge.svg" alt="" />
                         </div>
-                        <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                        <div className="dashboard-stats__value">
-                            18
+                        <div className="dashboard-stats__wrapper">
+                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
+                            <div className="dashboard-stats__value">
+                                18
+                            </div>
                         </div>
                     </div>
                     <div className="dashboard-stats__item">
                         <div className="dashboard-stats__icon">
                             <img src="images/electricity.svg" alt="" />
                         </div>
-                        <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                        <div className="dashboard-stats__value">
-                            B 10
+                        <div className="dashboard-stats__wrapper">
+                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
+                            <div className="dashboard-stats__value">
+                                <span className='green-text'>P</span> <span className='green-text'>N</span> B 10
+                            </div>
                         </div>
                     </div>
                     <div className="dashboard-stats__item">
                         <div className="dashboard-stats__icon">
                             <img src="images/slack.svg" alt="" />
                         </div>
-                        <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
-                        <div className="dashboard-stats__value">
-                            L 2000 R 2000
+                        <div className="dashboard-stats__wrapper">
+                            <div className="dashboard-stats__title">{t('nav-item-settings')}</div>
+                            <div className="dashboard-stats__value">
+                                L 2000 R 2000
+                            </div>
                         </div>
                     </div>
                 </div>

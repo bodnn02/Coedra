@@ -7,7 +7,9 @@
 	display: flex;
 	justify-content: space-between;
 }
-
+.dashboard-header .logo {
+	display: none;
+}
 .text-h1 {
 	color: #D2D4D7;
 	font-family: "IBM Plex Sans";
@@ -24,6 +26,33 @@
 
 .dashboard-buttons>*:not(:last-child) {
 	margin-right: 16px;
+}
+
+@media (max-width: 600px) {
+	.dashboard-header {
+		padding: 23px 0;
+		margin: 0 12px;
+	}
+	.dashboard-header .logo {
+		display: flex;
+	}
+	.dashboard-header .text-h1 {
+		display: none;
+	}
+	.logo {
+		width: 183px;
+		height: 38px;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		overflow: hidden;
+	}
+	.logo img {
+		width: 231px;
+		height: 163.333px;
+	}
 }
 
 /* Dashboard header *Stop* */

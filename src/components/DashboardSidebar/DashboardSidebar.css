@@ -41,6 +41,7 @@
 	text-decoration: none;
 	cursor: pointer;
 }
+
 .dashboard-nav__item.disabled {
 	border-top: 1px solid rgba(255, 255, 255, 0.03);
 	opacity: 0.5;
@@ -69,6 +70,7 @@
 	fill: #F8D239;
 	stroke: #F8D239;
 }
+
 .dashboard-nav__item.selected .dashboard-nav__title {
 	background: var(--binance-color, linear-gradient(90deg, #F8D239 0%, #F0B90B 100%));
 	background-clip: text;
@@ -100,12 +102,6 @@
 }
 
 .status__value {
-	padding: 5px 18px;
-
-	width: fit-content;
-
-	border-radius: 8px;
-
 	color: #FFF;
 	text-align: center;
 	font-family: "IBM Plex Sans";
@@ -115,18 +111,58 @@
 	line-height: normal;
 }
 
-.status__value.green {
-	background: #58D299;
-}
-
-.status__value.red {
-	background: #E34957;
-}
-
 /* Status *Stop* */
 
 @media (max-width: 600px) {
-    .dashboard-sidebar {
-        display: none;
-    }
+	.dashboard-sidebar {
+		position: fixed;
+
+		top: unset;
+		bottom: 0;
+		left: 50%;
+
+		max-width: 100%;
+		width: fit-content;
+		height: auto;
+
+		border-radius: 24px 24px 0px 0px;
+
+		transform: translateX(-50%);
+		z-index: 5;
+
+		overflow: hidden;
+	}
+
+	.dashboard-sidebar__header {
+		display: none;
+	}
+
+	.dashboard-sidebar__content {
+		margin: 15px 12px;
+	}
+
+	.dashboard-sidebar .dashboard-nav {
+		display: flex;
+	}
+	.dashboard-nav__title {
+		font-size: 10px;
+		white-space: nowrap;
+	}
+	.dashboard-sidebar .dashboard-nav__item {
+		padding: 0;
+		flex-direction: column;
+	}
+	.dashboard-sidebar .dashboard-nav__item:not(:last-child) {
+		margin-right: 18.5px;
+	}
+	.dashboard-sidebar .dashboard-nav__icon {
+		margin-right: 0;
+		margin-bottom: 8px;
+	}
+	.dashboard-sidebar__footer {
+		display: none;
+	}
+	.dashboard-sidebar .dashboard-nav__item.disabled {
+		border: none;
+	}
 }

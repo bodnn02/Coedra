@@ -50,7 +50,7 @@ export const DashboardSidebar = () => {
             <div className="dashboard-sidebar__footer">
                 <div className="status">
                     <div className="status__title">{t('status-title')}</div>
-                    <div className="status__value green">{t('status-on')}</div>
+                    <div className="status__value green-text">{t('status-on')}</div>
                 </div>
             </div>
         </aside>
